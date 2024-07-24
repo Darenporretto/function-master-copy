@@ -149,7 +149,7 @@
         whatever();
       }
       something(yay);
-      assert.equal(im_outter, "???");
+      assert.equal(im_outter, 40);
   
     });
   
@@ -160,7 +160,7 @@
       function foo(whatever){
         return "hello, this" + whatever();
       }
-      assert.equal(foo(yay), "???");
+      assert.equal(foo(yay), "hello, this is dog");
     });
   
   })();

@@ -64,8 +64,10 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-    return "Welcome " + object.name + "!";
+    //access name property of the provided object and return formatted string
+    return `Welcome ${object.name.charAt(0).toUpperCase() + object.name.slice(1)}!`;
 }
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 8 - Profile Info /////////////////////////////////////////
@@ -125,7 +127,13 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    //find friends with specified name
+    const person = array.find(p => p.name === name);
+    const friends = person ? person.friends : []; //friends empty array
+    //filter out friends
+    return array
+    .filter(p => !friends.includes(p.name) && p.name !== name) 
+    .map(p => p.name); //return names of friends using map meth
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -133,7 +141,8 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    object[key] = value; //update key to ne value
+    return object; //return updated object
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -141,7 +150,9 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    array.forEach(key => {
+        delete object[key]; //removes property if it exsists
+    });
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -149,7 +160,7 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+    return Array.from(new Set(array)); //switches sets back to arrays
 }
 
 //////////////////////////////////////////////////////////////////////

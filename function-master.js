@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-    return Object.values(object);
+    return Object.values(object);//takes values from objects
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -12,7 +12,7 @@ function objectValues(object) {
 
 function keysToString(object) {
     return Object.keys(object).join(" ");
-
+    //get keys aand join them with a space
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -20,7 +20,9 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    return Object.values(object) //get all values from string
+    .filter(value => typeof value === "string")//filter onlyb string values
+    .join(" ");//join string values with a space
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -28,7 +30,11 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    if (Array.isArray(collection)) {
+        return "array"; //return array if array
+    } else if (typeof collection === "object" && collection !== null) {
+        return "object"; //return object if not null
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -36,7 +42,8 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    if (string.length === 0) return ""; //handle empty string case
+    return string.charAt(0).toUpperCase() + string.slice(1); //capatalize first
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -44,7 +51,12 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    return string
+    .split(" ") //split the string into an array of words
+    .map(word =>
+        word.charAt(0).toUpperCase() + word.slice(1) //cap each word
+    )
+    .join(" "); //join words back into a single string
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -52,7 +64,7 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    return "Welcome " + object.name + "!";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -60,7 +72,11 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    //capitalize the name and species
+    const name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    const species = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+    
+    return `${name} is a ${species}`; //use template literals for formatting
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -68,7 +84,11 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    //check if object has noises property and if its an array
+    if (Array.isArray(object.noises) && object.noises.length > 0) {
+        return object.noises.join(" "); //join the noises array with a space
+    }
+    return "there are no noises";//return the default message if no noises
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -76,7 +96,10 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    //split the string into array
+    var wordsArray = string.split(" ");
+    //check if the word exists in the array
+    return wordsArray.includes(word);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -84,7 +107,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    object.friends.push(name); //add name to the friends array
+    return object; //return modified object
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -92,7 +116,8 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    //check if the friends array existsand if it has the name
+    return Array.isArray(object.friends) && object.friends.includes(name);
 }
 
 //////////////////////////////////////////////////////////////////////
